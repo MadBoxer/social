@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  university_id: 1
+  faculty_id: 1
+  studentstatus_id: 1
+
+two:
+  university_id: 1
+  faculty_id: 1
+  studentstatus_id: 1

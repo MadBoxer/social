@@ -1,0 +1,13 @@
+%html
+  %head
+    %title Social
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application" 
+    = csrf_meta_tags
+  %body
+    #admin_head_menu
+      %ul
+        %li= link_to 'Настройки', [:administration, :settings]
+        %li= link_to 'Список пользователей', [:administration, :users]
+
+    = yield

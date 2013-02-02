@@ -1,0 +1,17 @@
+%html
+  %head
+    %title Social
+    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"
+    = javascript_include_tag "application", "user" 
+    = csrf_meta_tags
+    = tinymce_assets
+    = tinymce
+  %body
+    #main
+      #left
+        - if @user && @user.id
+          %ul
+            %li= link_to 'Моя страница', :controller => :user, :action => :show, :id => @user.id
+      #right
+        = yield

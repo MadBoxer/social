@@ -1,0 +1,15 @@
+%h1 Список семейных статусов
+
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |marital_status|
+    %tr
+      %td= link_to marital_status.value, edit_administration_settings_maritalstatus_path(marital_status)
+      %td= link_to 'Удалить', administration_settings_maritalstatus_path(marital_status), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Определить семейное положение', new_administration_settings_maritalstatus_path

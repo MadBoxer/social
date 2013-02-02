@@ -1,0 +1,15 @@
+%h1 Список религий
+
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |religion|
+    %tr
+      %td= link_to religion.value, edit_administration_settings_religion_path(religion)
+      %td= link_to 'Удалить', administration_settings_religion_path(religion), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Определить религию', new_administration_settings_religion_path

@@ -1,0 +1,85 @@
+= tinymce
+
+= form_for [:administration, @object] do |f|
+  = render :partial => 'shared/errors', :locals => {:object => @object}
+  %table{:class => :scaffold_table}
+    %tr
+      %td= f.label :name, 'Имя'
+      %td= f.text_field :name
+    %tr
+      %td= f.label :surname, 'Фамилия'
+      %td= f.text_field :surname
+    %tr
+      %td= f.label :birth_date, 'Дата рождения'
+      %td= f.date_select :birth_date, :start_year => 1955, :include_blank => true
+    %tr
+      %td= f.label :avatar, 'Аватар'
+      %td= f.file_field :avatar
+    - if @object.avatar.file 
+      %tr
+        %td
+        %td= image_tag @object.avatar.mini.url
+    %tr
+      %td= f.label :native_city, 'Родной город'
+      %td= f.text_field :native_city
+    %tr
+      %td= f.label :email, 'E-mail'
+      %td= f.text_field :email
+    %tr
+      %td= f.label :sex, 'Пол'
+      %td= f.select :sex, [['Не указано', 0]]  + Setting.sexes.collect{|s| [s.value, s.id]}
+    %tr
+      %td= f.label :marital_status_id, 'Семейное положение'
+      %td= f.select :marital_status_id, [['Не указано', 0]] + Setting.maritalstatuses.all.collect{|c| [c.value, c.id]}
+    %tr
+      %td= 'Страна'
+      %td= select_tag :country, options_for_select([['Не указано', 0]] + Setting.countries.collect{|c| [c.value, c.id]}, @object.city.country.id)
+    %tr
+      %td= f.label :city_id, 'Город'
+      %td= f.select :city_id, [['Не указано', 0]] + City.where(:country_id => @object.city.country.id).all.collect{|c| [c.name, c.id]}, {}, {:id => 'country_city_id'}
+    %tr
+      %td= f.label :mobile_phone, 'Мобильный телефон'
+      %td= f.text_field :mobile_phone
+    %tr
+      %td= f.label :skype, 'Skype'
+      %td= f.text_field :skype
+    %tr
+      %td= f.label :web_site, 'Веб сайт'
+      %td= f.text_field :web_site
+    %tr
+      %td= f.label :politic_id, 'Политические взгляды'
+      %td= f.select :politic_id, [['Не указано', 0]] + Setting.politics.all.collect{|p| [p.value, p.id]}
+    %tr
+      %td= f.label :religion_id, 'Религиозные взгляды'
+      %td= f.select :religion_id, [['Не указано', 0]] + Setting.religions.all.collect{|p| [p.value, p.id]}
+    %tr
+      %td= f.label :activities, 'Деятельность'
+      %td= f.text_area :activities, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_films, 'Любимые фильмы'
+      %td= f.text_area :favourite_films, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_books, 'Любимые книги'
+      %td= f.text_area :favourite_books, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_tv_shows, 'Любимые телепрограммы'
+      %td= f.text_area :favourite_tv_shows, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_games, 'Любимые игры'
+      %td= f.text_area :favourite_games, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_phrases, 'Любимые фразы'
+      %td= f.text_area :favourite_phrases, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :about_myself, 'О себе'
+      %td= f.text_area :about_myself, :class => 'tinymce', :rows => 10
+    - if @object.id
+      %tr
+        %td= f.label :created_at, 'Создан'
+        %td= f.text_field :created_at, :value => @object.created_at.strftime('%d.%m.%Y'), :disabled => 'disabled'
+      %tr
+        %td= f.label :updated_at, 'Обновлен'
+        %td= f.text_field :updated_at, :value => @object.updated_at.strftime('%d.%m.%Y'), :disabled => 'disabled'
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

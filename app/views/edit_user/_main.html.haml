@@ -1,0 +1,23 @@
+= form_for user, :url => {:controller => :edit_user, :action => :update} do |f|
+  %table{:class => :scaffold_table}
+    %tr
+      %td= f.label :birth_date, 'Дата рождения'
+      %td= f.date_select :birth_date, :start_year => 1955, :include_blank => true
+    %tr
+      %td= f.label :native_city, 'Родной город'
+      %td= f.text_field :native_city
+    %tr
+      %td= f.label :sex, 'Пол'
+      %td= f.select :sex, [['Не указано', 0]]  + Setting.sexes.collect{|s| [s.value, s.id]}
+    %tr
+      %td= f.label :marital_status_id, 'Семейное положение'
+      %td= f.select :marital_status_id, [['Не указано', 0]] + Setting.maritalstatuses.all.collect{|c| [c.value, c.id]}
+    %tr
+      %td= f.label :politic_id, 'Политические взгляды'
+      %td= f.select :politic_id, [['Не указано', 0]] + Setting.politics.all.collect{|p| [p.value, p.id]}
+    %tr
+      %td= f.label :religion_id, 'Религиозные взгляды'
+      %td= f.select :religion_id, [['Не указано', 0]] + Setting.religions.all.collect{|p| [p.value, p.id]}
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

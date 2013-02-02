@@ -1,0 +1,20 @@
+= form_for user.universities_relations, :url => {:controller => :edit_user, :action => :update_universities} do |f|
+  %table{:class => :scaffold_table}
+    %tr
+      %td Страна
+      %td= select_tag :country, options_for_select([['Не указано', 0]] + Setting.countries.collect{|c| [c.value, c.id]}, rel.university.city.country.id), :class => :country
+    %tr
+      %td= f.label :city_id, 'Город'
+      %td= select_tag :country_city_id, options_for_select([['Не указано', 0]] + rel.university.city.country.cities.all.collect{|o| [o.name, o.id]}, rel.university.city.id),  :class => :country_city
+    %tr
+      %td= f.label :university_id, 'Университет'
+      %td= f.select :university_id, [['Не указано', nil]] + rel.university.city.universities.all.collect{|o| [o.abbr, o.id]}, {}, :class => :university
+    %tr
+      %td= f.label :faculty_id, 'Факультет'
+      %td= f.select :faculty_id, [['Не указано', nil]] + rel.university.faculties.all.collect{|o| [o.name, o.id]}, {}, :class => :faculty
+    %tr
+      %td= f.label :studentstatus_id, 'Статус'
+      %td= f.select :studentstatus_id, [['Не указано', nil]] + Setting.studentstatuses.all.collect{|o| [o.value, o.id]}, {}, :class => :studentstatus
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

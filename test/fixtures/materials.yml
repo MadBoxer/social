@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  material_type: MyString
+  active: false
+  trash: false
+
+two:
+  material_type: MyString
+  active: false
+  trash: false

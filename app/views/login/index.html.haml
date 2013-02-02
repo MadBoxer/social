@@ -1,0 +1,12 @@
+%p#notice= flash[:notice]
+= form_tag 'login/authorize' do
+  %table
+    %tr
+      %td E-mail
+      %td= text_field :user, :email
+    %tr
+      %td Пароль
+      %td= password_field :user, :password
+    %tr
+      %td
+      %td= submit_tag 'Войти'

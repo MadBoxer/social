@@ -1,0 +1,24 @@
+= javascript_include_tag "uploader"
+= javascript_include_tag "uploader_interface"
+.container
+  %h2 Загрузить новые фотографии
+  = form_tag({:controller => :album, :action => :add_photos}, {:multipart => true, :id => "fileupload", :method => :post}) do 
+    = hidden_field :album, :id
+    .span7
+      %span{:class => "btn btn-success fileinput-button"}
+        %i{ :class => "icon-plus icon-white"}
+          %span Добавить
+          = file_field :photos, :path
+      %button{:type => "submit", :class => "btn btn-primary start"}
+        %i{ :class => "icon-upload icon-white"}
+        %span Начать загрузку
+      %button{:type => "reset", :class => "btn btn-warning cancel"}
+        %i{ :class => "icon-ban-circle icon-white"}
+        %span Отменить загрузку
+      %button{ :type => "button", :class => "btn btn-danger delete"}
+        %i{ :class => "icon-trash icon-white"}
+        %span Удалить
+      %input{ :type => "checkbox",  :class => "toggle"}
+        
+#img-container
+%table{:id => 'photo_table', :class => 'table'}

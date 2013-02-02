@@ -1,0 +1,14 @@
+%h1 Просмотр
+
+%p#notice= notice
+
+%table{:class => :admin_show_table}
+  <% for attribute in attributes -%>
+%tr
+    %td <%= attribute.human_name %>:
+    %td= @object.<%= attribute.name %>
+  <% end -%>
+
+= link_to 'Редактировать', edit_<%= singular_table_name %>_path(@object)
+\|
+= link_to 'Назад', <%= index_helper %>_path

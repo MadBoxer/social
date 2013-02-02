@@ -1,0 +1,20 @@
+= form_tag :controller => :edit_user, :action => :add_university do
+  %table{:class => :scaffold_table}
+    %tr
+      %td Страна
+      %td= select_tag :country, options_for_select([['Не указано', nil]] + Setting.countries.collect{|c| [c.value, c.id]}), :class => :country
+    %tr
+      %td Город
+      %td= select_tag :city_id, options_for_select([['Не указано', nil]]), :class => :country_city
+    %tr
+      %td Университет
+      %td= select_tag :university_id, options_for_select([['Не указано', nil]]), :class => :university
+    %tr
+      %td Факультет
+      %td= select_tag :faculty_id, options_for_select([['Не указано', nil]]), :class => :faculty
+    %tr
+      %td Статус
+      %td= select_tag :studentstatus_id, options_for_select([['Не указано', nil]] + Setting.studentstatuses.all.collect{|o| [o.value, o.id]}), :class => :studentstatus
+    %tr
+      %td
+      %td= submit_tag 'Сохранить'

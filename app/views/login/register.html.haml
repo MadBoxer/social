@@ -1,0 +1,25 @@
+- if @added
+  На указанный адрес выслано письмо с подтверждением регистрации
+-else
+  %h3 Зарегистрироваться
+  = render :partial => 'shared/errors', :locals => {:object => @user}
+  = form_for @user, :url => {:controller => :login, :action => :add_user} do |f|
+    %table
+      %tr
+        %td Имя
+        %td= f.text_field :name
+      %tr
+        %td Фамилия
+        %td= f.text_field :surname
+      %tr
+        %td E-mail
+        %td= f.text_field :email
+      %tr
+        %td Пароль
+        %td= f.password_field :password
+      %tr
+        %td Подтвердите пароль
+        %td= f.password_field :password_confirmation
+      %tr
+        %td 
+        %td= f.submit 'Зарегистрироваться'

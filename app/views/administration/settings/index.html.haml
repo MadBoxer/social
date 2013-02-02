@@ -1,0 +1,6 @@
+%ul
+  - SettingType.all.each do |type|
+    %li= link_to type.name, [:administration, :settings, type.alias]
+  %li= link_to 'Города', [:administration, :cities]
+  %li= link_to 'ВУЗы', [:administration, :universities]
+  %li= link_to 'Факультеты', [:administration, :faculties]

@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  surname: MyString
+  email: MyString
+  password: MyString
+  marital_status_id: 1
+  city_id: 1
+  mobile_phone: MyString
+  skype: MyString
+  web_site: MyString
+  politic_id: 1
+  religion_id: 1
+  activities: MyString
+  favourite_films: MyString
+  favourite_books: MyString
+  favourite_tv_shows: MyString
+  favourite_games: MyString
+  favourite_phrases: MyString
+  about_myself: MyString
+  material_id: 1
+
+two:
+  name: MyString
+  surname: MyString
+  email: MyString
+  password: MyString
+  marital_status_id: 1
+  city_id: 1
+  mobile_phone: MyString
+  skype: MyString
+  web_site: MyString
+  politic_id: 1
+  religion_id: 1
+  activities: MyString
+  favourite_films: MyString
+  favourite_books: MyString
+  favourite_tv_shows: MyString
+  favourite_games: MyString
+  favourite_phrases: MyString
+  about_myself: MyString
+  material_id: 1

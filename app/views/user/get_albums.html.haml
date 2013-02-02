@@ -1,0 +1,6 @@
+%h4 Мои альбомы
+= link_to 'Создать альбом', 'javascript:void(0)', :id => :new_album
+= render :partial => 'public/albums', :locals => {:object => @user}
+
+= render :partial => 'user/new_album_form'
+#album_show_div

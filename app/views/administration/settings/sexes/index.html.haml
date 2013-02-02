@@ -1,0 +1,11 @@
+%h1 Пол
+
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |sex|
+    %tr
+      %td= sex.setting_image ? (image_tag sex.setting_image.path.mini.url) : ''
+      %td= link_to sex.value, edit_administration_settings_sex_path(sex)

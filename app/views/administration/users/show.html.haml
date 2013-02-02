@@ -1,0 +1,66 @@
+%h1 Просмотр
+
+%p#notice= notice
+
+%table{:class => :admin_show_table}
+  %tr
+    %td Name:
+    %td= @object.name
+  %tr
+    %td Surname:
+    %td= @object.surname
+  %tr
+    %td Email:
+    %td= @object.email
+  %tr
+    %td Password:
+    %td= @object.password
+  %tr
+    %td Marital status:
+    %td= @object.marital_status_id
+  %tr
+    %td City:
+    %td= @object.city_id
+  %tr
+    %td Mobile phone:
+    %td= @object.mobile_phone
+  %tr
+    %td Skype:
+    %td= @object.skype
+  %tr
+    %td Web site:
+    %td= @object.web_site
+  %tr
+    %td Politic:
+    %td= @object.politic_id
+  %tr
+    %td Religion:
+    %td= @object.religion_id
+  %tr
+    %td Activities:
+    %td= @object.activities
+  %tr
+    %td Favourite films:
+    %td= @object.favourite_films
+  %tr
+    %td Favourite books:
+    %td= @object.favourite_books
+  %tr
+    %td Favourite tv shows:
+    %td= @object.favourite_tv_shows
+  %tr
+    %td Favourite games:
+    %td= @object.favourite_games
+  %tr
+    %td Favourite phrases:
+    %td= @object.favourite_phrases
+  %tr
+    %td About myself:
+    %td= @object.about_myself
+  %tr
+    %td Material:
+    %td= @object.material_id
+  
+= link_to 'Редактировать', edit_administration_user_path(@object)
+\|
+= link_to 'Назад', administration_users_path

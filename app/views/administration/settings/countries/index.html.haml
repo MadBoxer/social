@@ -1,0 +1,16 @@
+%h1 Список стран
+
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |country|
+    %tr
+      %td= country.setting_image ? (image_tag country.setting_image.path.mini.url, :height => '20px', :width => '30px') : ''
+      %td= link_to country.value, edit_administration_settings_country_path(country)
+      %td= link_to 'Удалить', administration_settings_country_path(country), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Создать страну', new_administration_settings_country_path

@@ -1,0 +1,15 @@
+%h1 Список статусов
+
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |studentstatus|
+    %tr
+      %td= link_to studentstatus.value, edit_administration_settings_studentstatus_path(studentstatus)
+      %td= link_to 'Удалить', administration_settings_studentstatus_path(studentstatus), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Новый статус', new_administration_settings_studentstatus_path

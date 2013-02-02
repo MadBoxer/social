@@ -1,0 +1,14 @@
+%h1 Список факультетов
+
+%table{:class => :admin_list_table}
+
+  - @objects.each do |faculty|
+    %tr
+      %td= link_to faculty.name, edit_administration_faculty_path(faculty)
+      %td= faculty.university.abbr
+      %td= faculty.university.city.name
+      %td= link_to 'Удалить', administration_faculty_path(faculty), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Новый факультет', new_administration_faculty_path

@@ -1,0 +1,97 @@
+.user_header
+  .user_name= @user.name + ' ' + @user.surname
+.left_part.border
+  .avatar
+    = image_tag @user.avatar.avatar.url
+  %hr
+  = link_to 'Редактировать', :controller => :edit_user, :action => :edit
+  = link_to 'Мои альбомы', :controller => :user, :action => :get_albums
+  
+  
+  
+  
+= link_to 'Выход', :controller => :login, :action => :unlogin
+.right_part.border
+  .status_bar
+    = @user.name + ' ' + @user.surname
+    %hr
+    %table{:class => :data_fields_table, :border => 1}
+      - if @user.not_zero?('birth_date')
+        %tr
+          %td{:width => 170} День рождения
+          %td= @user.birth_date.strftime("%d.%m.%Y")
+      - if @user.not_zero?('sex')
+        %tr
+          %td Пол
+          %td= Sex.find(@user.sex).value
+      - if @user.not_zero?('native_city')
+        %tr
+          %td Родной город
+          %td= @user.native_city
+      - if @user.not_zero?('marital_status_id')
+        %tr
+          %td Семейное положение
+          %td= Setting.find(@user.marital_status_id).value
+      - if @user.not_zero?('politic_id')
+        %tr
+          %td Политические взгляды
+          %td= Setting.find(@user.politic_id).value
+      - if @user.not_zero?('religion_id')
+        %tr
+          %td Религиозные взгляды
+          %td= Setting.find(@user.religion_id).value
+    
+    %h4 Контактная информация
+    %table{:class => :data_fields_table, :border => 1}
+      - if @user.mobile_phone
+        %tr
+          %td{:width => 170} Моб. телефон
+          %td= @user.mobile_phone
+      - if @user.city
+        %tr
+          %td Страна
+          %td
+            - if @user.city.country.setting_image 
+              .user_page_mini_flag= image_tag(@user.city.country.setting_image.path.mini.url, :height => 15)
+              = @user.city.country.value
+        %tr
+          %td Город
+          %td
+            - if @user.city.city_image
+              .user_page_mini_flag= image_tag(@user.city.city_image.mini.url, :height => 15) 
+              = @user.city.name
+      - if @user.web_site
+        %tr
+          %td Семейное положение
+          %td= @user.web_site
+          
+    %h4 Личная информация
+    %table{:class => :data_fields_table, :border => 1}
+      - unless @user.activities.empty?
+        %tr
+          %td{:width => 170} Деятельность
+          %td= @user.activities.html_safe
+      - unless @user.favourite_films.empty?
+        %tr
+          %td Любимые фильмы
+          %td= @user.favourite_films.html_safe
+      - unless @user.favourite_tv_shows.empty?
+        %tr
+          %td Любимые телешоу
+          %td= @user.favourite_tv_shows.html_safe
+      - unless @user.favourite_books.empty?
+        %tr
+          %td Любимые книги
+          %td= @user.favourite_books.html_safe
+      - unless @user.favourite_games.empty?
+        %tr
+          %td Любимые игры
+          %td= @user.favourite_games.html_safe
+      - unless @user.favourite_phrases.empty?
+        %tr
+          %td Любимые фразы
+          %td= @user.favourite_phrases.html_safe
+      - unless @user.about_myself.empty?
+        %tr
+          %td О себе
+          %td= @user.about_myself.html_safe

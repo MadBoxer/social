@@ -1,0 +1,14 @@
+%h1 Список политических взглядов
+%table{:class => :admin_list_table}
+  %tr
+    %th
+    %th
+
+  - @objects.each do |politic|
+    %tr
+      %td= link_to politic.value, edit_administration_settings_politic_path(politic)
+      %td= link_to 'Удалить', administration_settings_politic_path(politic), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Определить политику', new_administration_settings_politic_path

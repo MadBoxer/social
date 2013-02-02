@@ -1,0 +1,28 @@
+= tinymce_assets
+= tinymce
+= form_for user, :url => {:controller => :edit_user, :action => :update} do |f|
+  %table{:class => :scaffold_table}
+    %tr
+      %td= f.label :activities, 'Деятельность'
+      %td= f.text_area :activities, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_films, 'Любимые фильмы'
+      %td= f.text_area :favourite_films, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_books, 'Любимые книги'
+      %td= f.text_area :favourite_books, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_tv_shows, 'Любимые телепрограммы'
+      %td= f.text_area :favourite_tv_shows, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_games, 'Любимые игры'
+      %td= f.text_area :favourite_games, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :favourite_phrases, 'Любимые фразы'
+      %td= f.text_area :favourite_phrases, :class => 'tinymce', :rows => 5
+    %tr
+      %td= f.label :about_myself, 'О себе'
+      %td= f.text_area :about_myself, :class => 'tinymce', :rows => 10
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

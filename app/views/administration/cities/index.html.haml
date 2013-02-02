@@ -1,0 +1,19 @@
+%h1 Список городов
+
+%table{:class => :admin_list_table}
+  %tr
+    %th Герб
+    %th Название
+    %th Страна
+    %th
+
+  - @objects.each do |city|
+    %tr
+      %td= !city.city_image.file.nil? && city.city_image.file.exists? ? image_tag(city.city_image.mini.url) : ''
+      %td= link_to city.name, edit_administration_city_path(city)
+      %td= link_to city.country.value, edit_administration_settings_country_path(city.country)
+      %td= link_to 'Удалить', administration_city_path(city), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Добавить город', new_administration_city_path

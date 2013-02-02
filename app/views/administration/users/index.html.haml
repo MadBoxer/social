@@ -1,0 +1,19 @@
+%h1 Список пользователей
+
+%table{:class => :admin_list_table}
+  %tr
+    %th Имя
+    %th Фамилия
+    %th Email
+    %th
+
+  - @objects.each do |user|
+    %tr
+      %td= user.name
+      %td= user.surname
+      %td= link_to user.email, edit_administration_user_path(user)
+      %td= link_to 'Удалить', administration_user_path(user), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Создать пользователя', new_administration_user_path

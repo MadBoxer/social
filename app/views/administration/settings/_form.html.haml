@@ -1,0 +1,18 @@
+= form_for [:administration, :settings, @object] do |f|
+  = f.hidden_field 'setting_type_id', :value => @object.setting_type.id
+  = render :partial => 'shared/errors', :locals => {:object => @object}
+  %table{:class => :scaffold_table}
+    %tr
+      %td= f.label :value, 'Название'
+      %td= f.text_field :value
+    %tr
+      %td= f.label :alias, 'Псевдоним'
+      %td= f.text_field :alias
+    - if @object.class.reflections[:setting_image]
+      = f.fields_for :setting_image, :build_association => true do |i|
+        %tr
+          %td= !@object.setting_image.path.file.nil? ? (image_tag @object.setting_image.path.medium.url) : 'Файл'
+          %td= i.file_field :path
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

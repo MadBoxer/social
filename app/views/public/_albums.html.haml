@@ -1,0 +1,5 @@
+%hr
+#album_list
+  - object.albums.each do |a|
+    = link_to a.name, {:controller => :album, :action => :show, :alias => a.alias}
+    %hr

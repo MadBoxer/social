@@ -1,0 +1,4 @@
+= @album.name
+= render :partial => 'file_upload', :locals => {:album => @album}
+- @album.photos.each do |p|
+  = image_tag p.path.mini.url

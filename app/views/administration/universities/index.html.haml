@@ -1,0 +1,14 @@
+%h1 Список ВУЗов
+
+%table{:class => :admin_list_table}
+  %tr
+  - @objects.each do |university|
+    %tr
+      %td= university.abbr
+      %td= university.city.name
+      %td= link_to 'Редактировать', edit_administration_university_path(university)
+      %td= link_to 'Удалить', administration_university_path(university), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Новый ВУЗ', new_administration_university_path

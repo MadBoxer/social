@@ -1,0 +1,11 @@
+= form_for [:administration, @object] do |f|
+  = render :partial => 'shared/errors', :locals => {:object => @object}
+  %table{:class => :scaffold_table}
+  <% for attribute in attributes -%>
+  %tr
+      %td= f.label :<%= attribute.name %>
+      %td= f.<%= attribute.field_type %> :<%= attribute.name %>
+  <% end -%>
+  %tr
+      %td
+      %td= f.submit 'Сохранить'

@@ -1,0 +1,18 @@
+= form_for [:administration, @object] do |f|
+  = render :partial => 'shared/errors', :locals => {:object => @object}
+  %table{:class => :scaffold_table}
+    %tr
+      %td= f.label :name
+      %td= f.text_field :name
+    %tr
+      %td Страна
+      %td= select_tag :country, options_for_select([['Не указано', 0]] + Setting.countries.collect{|c| [c.value, c.id]}, (@object.university && @object.university.city) ? @object.university.city.country.id : [])
+    %tr
+      %td= f.label :city_id, 'Город'
+      %td= select_tag :city_id, options_for_select([['Не указано', 0]] + ((@object.university && @object.university.city) ? City.where(:country_id => @object.university.city.country.id).all.collect{|c| [c.name, c.id]} : [])), :id => :country_city_id
+    %tr
+      %td= f.label :university_id
+      %td= f.select :university_id, [['Не указано', nil]] + (@object.university ? University.where(:city_id => @object.university.city.id).all.collect{|c| [c.abbr, c.id]} : []), {}, :id => :university_id
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

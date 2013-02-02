@@ -1,0 +1,11 @@
+sudo rails g scaffold administration/user name:string surname:string email:string password:string marital_status_id:integer city_id:integer mobile_phone:string skype:string web_site:string politic_id:integer religion_id:integer activities:string favourite_films:string favourite_books:string favourite_tv_shows:string favourite_games:string favourite_phrases:string about_myself:string material_id:integer
+
+sudo rails g model Material material_type:string active:boolean trash:boolean
+
+sudo rails g controller scaffold
+
+sudo rails g model user
+
+sudo rails g model user_attr name:string surname:string email:string password:string marital_status_id:integer city_id:integer mobile_phone:string skype:string web_site:string politic_id:integer religion_id:integer activities:string favourite_films:string favourite_books:string favourite_tv_shows:string favourite_games:string favourite_phrases:string about_myself:string material_id:integer
+
+sudo rails g scaffold administration/settings/country name:string

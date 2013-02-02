@@ -1,0 +1,15 @@
+#new_album_form
+  = form_tag :controller => :user, :action => :new_album do
+    %table
+      %tr
+        %td Название
+        %td= text_field :album, :name
+      %tr
+        %td Анонс
+        %td= text_area :album, :announce, :rows => 5
+      %tr
+        %td Описание
+        %td= text_area :album, :description, :rows => 10
+      %tr
+        %td 
+        %td= submit_tag 'Добавить'

@@ -1,0 +1,15 @@
+%h1 Просмотр
+
+%p#notice= notice
+
+%table{:class => :admin_show_table}
+  %tr
+    %td Name:
+    %td= @administration_faculty.name
+  %tr
+    %td Univercity:
+    %td= @administration_faculty.univercity_id
+  
+= link_to 'Редактировать', edit_administration_faculty_path(@administration_faculty)
+\|
+= link_to 'Назад', administration_faculties_path

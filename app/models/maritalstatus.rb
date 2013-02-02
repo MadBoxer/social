@@ -1,0 +1,3 @@
+class Maritalstatus < Setting
+  
+end

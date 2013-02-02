@@ -1,0 +1,21 @@
+%h1= @object.name
+
+%p#notice= notice
+
+%table{:class => :admin_show_table}
+  %tr
+    %td Название
+    %td= @object.name
+  %tr
+    %td Псевдоним
+    %td= @object.alias
+  %tr
+    %td Страна
+    %td= @object.country_id
+  %tr
+    %td Герб
+    %td= @object.avatar
+  
+= link_to 'Редактировать', edit_administration_city_path(@administration_city)
+\|
+= link_to 'Назад', administration_cities_path
