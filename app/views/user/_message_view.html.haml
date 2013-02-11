@@ -1,0 +1,9 @@
+- if m
+  .message_div
+    .message_user
+      .dialog_message_user_avatar= image_tag user.avatar.file ? user.avatar.mini.url : 'no_image.png', :size => '50x50'
+      %span{:class => :dialog_message_user_name}= link_to user.name + ' ' + user.surname, :controller => :user, :action => :show, :id => user.id
+      %span{:class => :dialog_message_date}= m.created_at.strftime('%d.%m.%Y %H:%M')
+    .message_info_extended
+      %span{:class => :dialog_message_title}= m.title && !m.title.empty? ? m.title : '...'
+      %span{:class => :dialog_message_text}= m.text

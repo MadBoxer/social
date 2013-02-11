@@ -26,7 +26,7 @@ class Administration::ScaffoldController < Administration::AdministrationControl
     @object = @model.new(params[Env.model_string(controller_name)])
 
     if @object.save
-      redirect_to get_redirect, :notice => Env.model_name(controller_name) + ' was successfully created.'
+      #redirect_to get_redirect, :notice => Env.model_name(controller_name) + ' was successfully created.'
     else
       render :action => "new"
     end

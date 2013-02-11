@@ -7,13 +7,13 @@ Social::Application.routes.draw do  namespace :administration do
       resources :sexes
       resources :studentstatuses
     end
-    resources :user
+    resources :users
     resources :cities
     resources :universities
     resources :faculties
   end
   
-  get 'id:id', :controller => 'user', :action => 'show', :id => /[0-9]/
+  get 'id:id', :controller => :user, :action => :show, :id => /[0-9]+/
   
   post 'administration/settings', :controller => 'administration/settings', :action => :index
   get 'administration', :controller => 'administration/administration', :action => 'index'
@@ -27,16 +27,23 @@ Social::Application.routes.draw do  namespace :administration do
   match '' => 'login#index'
   match 'unlogin' => 'login#unlogin'
   match 'login/authorize' => 'login#authorize'
-  match 'edit' => 'edit_user#edit'
-  match 'update' => 'edit_user#update'
-  match 'update_universities' => 'edit_user#update_universities'
-  match 'add_university' => 'edit_user#add_university'
+  match 'edit' => 'user#edit'
+  match 'update' => 'user#update'
+  match 'update_universities' => 'user#update_universities'
+  match 'add_university' => 'user#add_university'
   match 'albums' => 'user#get_albums'
   match 'new_album' => 'user#new_album'
   match 'add_album' => 'user#add_album'
   get 'album_:alias', :controller => :album, :action => :show, :alias => :alias
   post 'album:alias/add_photos', :controller => :album, :action => :add_photos, :alias => :alias
   post 'add_photos', :controller => :album, :action => :add_photos
+  match 'friends' => 'user#get_friends'
+  match 'dialogs' => 'user#get_dialogs'
+  #get 'send_message_form/:user_id', :controller => :user, :action => :send_message, :user_id => :user_id
+  get 'delete_friend/:id', :controller => :user, :action => :delete_friend, :id => :id
+  get 'dialog/:user_id', :controller => :user, :action => :show_dialog, :user_id => :user_id 
+  get 'show_sent_messages/:user_id', :controller => :user, :action => :show_sent_messages, :user_id => :user_id 
+  post '/send_message/', :controller => :user, :action => :send_message
   
 
   # The priority is based upon order of creation:

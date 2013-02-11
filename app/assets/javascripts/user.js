@@ -13,4 +13,6 @@ $(document).ready(function(){
   $('#new_album').click(function(){
   	$('#new_album_form').dialog({width:450});
   });
+  
+  $('.dialog_view').scrollTop($('.dialog_view .message_div').length*($($('.dialog_view .message_div')[0]).height()));
 });

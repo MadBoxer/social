@@ -84,8 +84,9 @@ var uploaderObject = function(params) {
         self.xhr.setRequestHeader("Content-Type", "multipart/form-data, boundary="+boundary);
         self.xhr.setRequestHeader("Cache-Control", "no-cache");
 
+
         var body = "--" + boundary + "\r\n";
-        body += "Content-Disposition: form-data; name='"+(params.fieldName || 'file')+"'; filename='" + params.file.name + "'; album='"+ params.album + "'\r\n";
+        body += "Content-Disposition: form-data; name=photo["+params.fieldName+"]; filename=" + params.file.name + "; album="+ params.album + "\r\n";
         body += "Content-Type: application/octet-stream\r\n\r\n";
         body += self.reader.result + "\r\n";
         body += "--" + boundary + "--";

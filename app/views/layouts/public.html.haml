@@ -13,5 +13,11 @@
         - if @user && @user.id
           %ul
             %li= link_to 'Моя страница', :controller => :user, :action => :show, :id => @user.id
+            %li= link_to 'Мои друзья', :controller => :user, :action => :get_friends
+            %li= link_to 'Мои сообщения (' + @user.get_fresh_messages_count.to_s + ')', :controller => :user, :action => :get_dialogs
+        - else
+          %ul
+            %li= link_to 'Зарегистрироваться', :controller => :login, :action => :register
+            %li= link_to 'Войти', :controller => :login, :action => :index
       #right
         = yield

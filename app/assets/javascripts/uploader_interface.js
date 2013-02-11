@@ -148,7 +148,7 @@ $(document).ready(function() {
             new uploaderObject({
                 file:       uploadItem.file,
                 url:        '/add_photos',
-                fieldName:  'my-pic',
+                fieldName:  'path',
                 album: $('#album_id').val(),
 
                 onprogress: function(percents) {

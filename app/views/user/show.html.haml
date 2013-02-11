@@ -1,97 +1,101 @@
 .user_header
-  .user_name= @user.name + ' ' + @user.surname
+  .user_name= @show_user.name + ' ' + @show_user.surname
 .left_part.border
   .avatar
-    = image_tag @user.avatar.avatar.url
+    = image_tag @show_user.avatar.file ? @show_user.avatar.avatar.url : 'no_image_avatar.png', :width => '200px'
   %hr
-  = link_to 'Редактировать', :controller => :edit_user, :action => :edit
-  = link_to 'Мои альбомы', :controller => :user, :action => :get_albums
-  
-  
-  
+  - if @user == @show_user
+    = link_to 'Редактировать', :controller => :user, :action => :edit
+    = link_to 'Мои альбомы', :controller => :user, :action => :get_albums
   
 = link_to 'Выход', :controller => :login, :action => :unlogin
 .right_part.border
   .status_bar
-    = @user.name + ' ' + @user.surname
+    = @show_user.name + ' ' + @show_user.surname
     %hr
     %table{:class => :data_fields_table, :border => 1}
-      - if @user.not_zero?('birth_date')
+      - if @show_user.not_zero?('birth_date')
         %tr
           %td{:width => 170} День рождения
-          %td= @user.birth_date.strftime("%d.%m.%Y")
-      - if @user.not_zero?('sex')
+          %td= @show_user.birth_date.strftime("%d.%m.%Y")
+      - if @show_user.not_zero?('sex')
         %tr
           %td Пол
-          %td= Sex.find(@user.sex).value
-      - if @user.not_zero?('native_city')
+          %td= Sex.find(@show_user.sex).value
+      - if @show_user.not_zero?('native_city')
         %tr
           %td Родной город
-          %td= @user.native_city
-      - if @user.not_zero?('marital_status_id')
+          %td= @show_user.native_city
+      - if @show_user.not_zero?('marital_status_id')
         %tr
           %td Семейное положение
-          %td= Setting.find(@user.marital_status_id).value
-      - if @user.not_zero?('politic_id')
+          %td= Setting.find(@show_user.marital_status_id).value
+      - if @show_user.not_zero?('politic_id')
         %tr
           %td Политические взгляды
-          %td= Setting.find(@user.politic_id).value
-      - if @user.not_zero?('religion_id')
+          %td= Setting.find(@show_user.politic_id).value
+      - if @show_user.not_zero?('religion_id')
         %tr
           %td Религиозные взгляды
-          %td= Setting.find(@user.religion_id).value
+          %td= Setting.find(@show_user.religion_id).value
     
-    %h4 Контактная информация
-    %table{:class => :data_fields_table, :border => 1}
-      - if @user.mobile_phone
-        %tr
-          %td{:width => 170} Моб. телефон
-          %td= @user.mobile_phone
-      - if @user.city
-        %tr
-          %td Страна
-          %td
-            - if @user.city.country.setting_image 
-              .user_page_mini_flag= image_tag(@user.city.country.setting_image.path.mini.url, :height => 15)
-              = @user.city.country.value
-        %tr
-          %td Город
-          %td
-            - if @user.city.city_image
-              .user_page_mini_flag= image_tag(@user.city.city_image.mini.url, :height => 15) 
-              = @user.city.name
-      - if @user.web_site
-        %tr
-          %td Семейное положение
-          %td= @user.web_site
-          
-    %h4 Личная информация
-    %table{:class => :data_fields_table, :border => 1}
-      - unless @user.activities.empty?
-        %tr
-          %td{:width => 170} Деятельность
-          %td= @user.activities.html_safe
-      - unless @user.favourite_films.empty?
-        %tr
-          %td Любимые фильмы
-          %td= @user.favourite_films.html_safe
-      - unless @user.favourite_tv_shows.empty?
-        %tr
-          %td Любимые телешоу
-          %td= @user.favourite_tv_shows.html_safe
-      - unless @user.favourite_books.empty?
-        %tr
-          %td Любимые книги
-          %td= @user.favourite_books.html_safe
-      - unless @user.favourite_games.empty?
-        %tr
-          %td Любимые игры
-          %td= @user.favourite_games.html_safe
-      - unless @user.favourite_phrases.empty?
-        %tr
-          %td Любимые фразы
-          %td= @user.favourite_phrases.html_safe
-      - unless @user.about_myself.empty?
-        %tr
-          %td О себе
-          %td= @user.about_myself.html_safe
+    - if !@show_user.mobile_phone.to_s.empty? || !@show_user.city.to_s.empty? || !@show_user.web_site.to_s.empty? || !@show_user.skype.to_s.empty?
+      %h4 Контактная информация
+      %table{:class => :data_fields_table, :border => 1}
+        - if @show_user.mobile_phone
+          %tr
+            %td{:width => 170} Моб. телефон
+            %td= @show_user.mobile_phone
+        - if @show_user.city
+          %tr
+            %td Страна
+            %td
+              - if @show_user.city.country.setting_image 
+                .user_page_mini_flag= image_tag(@show_user.city.country.setting_image.path.mini.url, :height => 15)
+                = @show_user.city.country.value
+          %tr
+            %td Город
+            %td
+              - if @show_user.city.city_image
+                .user_page_mini_flag= image_tag(@show_user.city.city_image.mini.url, :height => 15) 
+                = @show_user.city.name
+        - if @show_user.skype
+          %tr
+            %td Скайп
+            %td= @show_user.skype
+        - if @show_user.web_site
+          %tr
+            %td Веб сайт
+            %td= @show_user.web_site
+            
+    - if @show_user.activities || @show_user.favourite_films || @show_user.favourite_tv_shows || @show_user.favourite_books || @show_user.favourite_games || @show_user.favourite_phrases || @show_user.about_myself
+      %h4 Личная информация
+      %table{:class => :data_fields_table, :border => 1}
+        - if @show_user.activities
+          %tr
+            %td{:width => 170} Деятельность
+            %td= @show_user.activities.html_safe
+        - if @show_user.favourite_films
+          %tr
+            %td Любимые фильмы
+            %td= @show_user.favourite_films.html_safe
+        - if @show_user.favourite_tv_shows
+          %tr
+            %td Любимые телешоу
+            %td= @show_user.favourite_tv_shows.html_safe
+        - if @show_user.favourite_books
+          %tr
+            %td Любимые книги
+            %td= @show_user.favourite_books.html_safe
+        - if @show_user.favourite_games
+          %tr
+            %td Любимые игры
+            %td= @show_user.favourite_games.html_safe
+        - if @show_user.favourite_phrases
+          %tr
+            %td Любимые фразы
+            %td= @show_user.favourite_phrases.html_safe
+        - if @show_user.about_myself
+          %tr
+            %td О себе
+            %td= @show_user.about_myself.html_safe

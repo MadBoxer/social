@@ -45,6 +45,8 @@ html, body{
 }
 .avatar{
   margin:5px;
+  width:200px;
+  text-align:center;
 }
 .edit_profile_list{
   background: #eee;
@@ -52,14 +54,102 @@ html, body{
 #new_album_form{
   display:none;
 }
-
-
-
-
-
-
-
-
+.messages_page{
+  width:95%;
+  margin:20px;
+  float:left;
+}
+.message_div{
+  width:100%;
+  margin-top:2px;
+  background:gray;
+  float:left;
+}
+.message_user
+{
+  float:left;
+  width:200px;
+}
+.message_info{
+  float:left;
+  width:450px;
+  height:60px;
+  dislay:inline;
+  
+}
+.dialog_message_user_avatar{
+  float:left;
+  width : 50px;
+  padding:5px;
+  margin-right:10px;
+}
+.dialog_message_user_name{
+  float:left;
+  font-weight:bold;
+  margin-top:10px;
+}
+.dialog_message_date{
+  float:left;
+  font-size:10px;
+}
+.dialog_message_title{
+  float:left;
+  width:70%;
+  margin-top:10px;
+  font-style:italic;
+  font-weight:bold;
+}
+.dialog_message_text{
+  float:left;
+  width:70%;
+}
+.message_info_extended{
+  float:left;
+  width:440px;
+  dislay:inline;
+  margin-bottom:10px;
+}
+.dialog_view{
+  float:left;
+  height:350px;
+  overflow:auto;
+  background:#CCFFFF;
+}
+#send_message_div{
+  margin-top:10px;
+  width:100%;
+  //height:55px;
+  border:1px solid black;
+  background-color:#F2F2F2;
+  float:left;
+  text-align:center;
+}
+.message_textarea{
+  height:50px;
+  width:400px;
+  resize:none;
+  border:1px solid gray;
+}
+#send_message_sub_div{
+  width:520px;
+  float:left;
+  margin-left:50px;
+}
+#send_message_operations{
+  width:100%;
+  input[type=submit]{
+    float:left;
+    margin:10px;
+  }
+  a#clip{
+    float:right;
+    margin:10px;
+  }
+}
+.sender_avatar{
+  float:left;
+  margin:10px;
+}
 
 
 

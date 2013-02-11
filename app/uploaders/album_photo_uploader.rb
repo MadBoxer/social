@@ -16,6 +16,6 @@ class AlbumPhotoUploader < CarrierWave::Uploader::Base
   end
  
   def store_dir
-    "uploads/albums/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/photos/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 end

@@ -12,8 +12,10 @@ class AlbumController < PublicController
     #  format.json { render json: @uploads.map{|upload| upload.to_jq_upload } }
     #end
     @album = @user.albums.find(3)
-    @p = Photo.new
-    @p.path = params["'my-pic'"]
+    @p = Photo.new(params[:photo])
+    #@p.path = params["'my-pic'"]
+    
+    #@p.save
     #@album.photos.push(@p)
     
     #@album.update_attributes(params[:album])

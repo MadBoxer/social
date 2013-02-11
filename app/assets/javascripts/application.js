@@ -10,15 +10,10 @@ function get_all_for_select(src, module, pars, where, view_field, func){
       type : 'get',
       dataType : 'json', 
       data : {module : module, func : func, pars : pars},
-      success: function(response){
-        opts = new Array($('<option></option>').val(0).text('Не указано'));
-        
+    }).done(function(response){
+    	dest = src.closest('form').find(where).empty().append($('<option/>').val(0).text('Не указано'));
         $(response).each(function(){
-          opts.push($('<option></option>').val(this.id).text($(this).attr(view_field))) 
+          dest.append($('<option/>').val(this.id).text($(this).attr(view_field))); 
         });
-        
-        src.closest('form').find(where).empty().append(opts);
-        
-      }
     });
 }

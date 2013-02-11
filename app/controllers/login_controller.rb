@@ -4,14 +4,14 @@ class LoginController < PublicController
   end
   
   def authorize
-    @user = User.where(:email => params[:user][:email]).where(:password => params[:user][:password]).first
+    @user = User.where(:email => params[:user][:email]).where(:password => Digest::MD5.hexdigest(params[:user][:password])).first
     if @user
       sess = Session.where(:session_id => request.session_options[:id]).first
       sess.shash = @user.user_hash
       sess.save
       session[:user_id] = @user.id
-      cookies[:sid] = { :value => @user.user_hash, :expires => 1.hour.from_now, :path => '/' }
-      cookies[:key] = { :value => Digest::MD5.hexdigest(@user.email.to_s + @user.password.to_s), :expires => 1.hour.from_now, :path => '/' }
+      cookies[:sid] = { :value => @user.user_hash, :expires => 5.hour.from_now, :path => '/' }
+      cookies[:key] = { :value => Digest::MD5.hexdigest(@user.email.to_s + Digest::MD5.hexdigest(@user.password.to_s)), :expires => 5.hour.from_now, :path => '/' }
       redirect_to :controller => :user, :action => :show, :id => @user.id
     else
       flash[:notice] = 'Incorrect email or password'
@@ -60,7 +60,9 @@ class LoginController < PublicController
   def add_user
     @user = User.register_prepare(params[:user])
     if @user.save
+      @user.reset_password
       redirect_to '/id'+@user.id.to_s
+      
       #(@user.email, @user.hash, @user.password).deliver
       #flash[:notice] = 'На указанный адрес выслано письмо с подтверждением регистрации.'
       #redirect_to :action => :user_added

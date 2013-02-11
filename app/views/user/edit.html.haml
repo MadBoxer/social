@@ -1,0 +1,7 @@
+%ul.edit_profile_list
+  %li= link_to 'Основное', :controller => :user, :action => :edit
+  %li= link_to 'Контакты', :controller => :user, :action => :edit, :act => :contacts
+  %li= link_to 'Интересы', :controller => :user, :action => :edit, :act => :interests
+  %li= link_to 'Образование', :controller => :user, :action => :edit, :act => :education
+  
+= @view

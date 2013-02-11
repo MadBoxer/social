@@ -1,0 +1,15 @@
+.messages_page
+  - recievers = @data[:dialogs]
+  - messages = @data[:last_messages]
+  - recievers.each_with_index do |r, i|
+    - user = User.find(r.reciever_id)
+    - m = messages[i][0]
+    .message_div
+      .message_user
+        .dialog_message_user_avatar= image_tag user.avatar.file ? user.avatar.mini.url : 'no_image.png', :size => '50x50'
+        %span{:class => :dialog_message_user_name}= user.name + ' ' + user.surname
+        %span{:class => :dialog_message_date}= m.created_at.strftime('%d.%m.%Y %H:%M')
+      .message_info
+        = image_tag m.sender.avatar.file ? m.sender.avatar.mini.url : 'no_image.png', :size => '30x30', :class => 'sender_avatar'
+        %span{:class => :dialog_message_title}= m.title && !m.title.empty? ? m.title : '...'
+        %span{:class => :dialog_message_text}= link_to truncate(m.text, :length => 40), :controller => :user, :action => :show_dialog, :user_id => user.id

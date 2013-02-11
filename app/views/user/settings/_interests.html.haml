@@ -1,6 +1,6 @@
 = tinymce_assets
 = tinymce
-= form_for user, :url => {:controller => :edit_user, :action => :update} do |f|
+= form_for user, :url => {:controller => :user, :action => :update} do |f|
   %table{:class => :scaffold_table}
     %tr
       %td= f.label :activities, 'Деятельность'

@@ -1,0 +1,10 @@
+- if @friends.length > 0
+  %table{:border => 1, :width => '100%'}
+    - @friends.each do |f|
+      %tr
+        %td{:width => 80}= image_tag (f.avatar.mini.file ? f.avatar.mini.url : 'no_image_gal.png'), :size => '80x90'
+        %td
+          %h4= link_to f.name + ' ' + f.surname, :controller => :user, :action => :show, :id => f.id
+        %td{:width => 150}
+          = link_to 'Убрать из друзей', :controller => :user, :action => :delete_friend, :id => f.id
+          = link_to 'Отправить сообщение', :controller => :user, :action => :send_message, :user_id => f.id, :remote => true

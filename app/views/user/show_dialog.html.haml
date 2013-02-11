@@ -1,0 +1,18 @@
+.messages_page
+  .dialog_view
+    - if @messages.length > 0
+      - @messages.each do |m|
+        - user = User.find(m.messenger)
+        = render :partial => 'message_view', :locals => {:user => user, :m => m}
+  - if @msg
+    #send_message_div
+      #send_message_sub_div
+        = form_for @msg, :url => {:controller => :user, :action => :send_message}, :remote => true do |f|
+          = f.hidden_field :reciever, :value => @msg.reciever.id
+          = image_tag @user.avatar.file ? @user.avatar.mini.url : 'no_image.png', :size => '50x50'
+          = f.text_area :text, :rows => 3, :class => 'message_textarea'
+          - avatar = @msg.reciever.avatar
+          = link_to (image_tag avatar.file ? avatar.mini.url : 'no_image.png', :size => '50x50'), :controller => :user, :action => :show, :id => @msg.reciever.id
+          #send_message_operations
+            = f.submit :value => 'Отправить'
+            = link_to 'Прикрепить', '', {:id => 'clip'}

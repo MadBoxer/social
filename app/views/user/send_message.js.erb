@@ -1,0 +1,3 @@
+$('#message_text').val('');
+$('.dialog_view').append('<%= escape_javascript(render :partial => 'message_view', :locals => {:user => @user, :m => @msg} ) %>');
+$('.dialog_view').scrollTop($('.dialog_view .message_div').length*($($('.dialog_view .message_div')[0]).height()));
